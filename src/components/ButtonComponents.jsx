@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-ò
+
 
 function Button({ language }) {
     const [activeIndex, setActiveIndex] = useState(null); //serve per tracciare l elemento utilizzato
@@ -14,35 +14,37 @@ function Button({ language }) {
                 {language.map((element, index) => (
                     <div key={index} className="m-2">
                         <button
-                            className="btn btn-primary"
-                            onClick={() => handleClick(index)} // 
+
+                            onClick={() => handleClick(index)}
+                            className={`btn ${activeIndex === index ? "btn-warning" : 'btn-primary'}`}// 
                         >
                             {element.title}
                         </button>
                     </div>
                 ))}
             </div>
-            {activeIndex === null && (
+            {
+                activeIndex === null && (
 
-                <div>
-                    <p>la carta non è selezionata</p>
-                </div>
-
-            )}
-            {/* va solo se si cliocca su un bottone */}
-            {activeIndex !== null && (
-                <div className="p-3">
-                    <div className="card-body">
-                        <h2>{language[activeIndex].title}</h2>
-                        <p>{language[activeIndex].description}</p>
+                    <div>
+                        <p>la carta non è selezionata</p>
                     </div>
-                </div>
 
-            )}
+                )
+            }
+            {/* va solo se si cliocca su un bottone */}
+            {
+                activeIndex !== null && (
+                    <div className="p-3">
+                        <div className="card-body">
+                            <h2>{language[activeIndex].title}</h2>
+                            <p>{language[activeIndex].description}</p>
+                        </div>
+                    </div>
 
-
-
-        </div>
+                )
+            }
+        </div >
     );
 }
 
